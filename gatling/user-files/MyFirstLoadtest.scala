@@ -1,12 +1,23 @@
 import io.gatling.core.Predef._
+import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
-import scala.concurrent.duration._
+import io.gatling.http.protocol.HttpProtocolBuilder
+import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
 
-class MyFirstLoadtest extends Simulation {
-	
-	val httpProtocol = http.baseUrl("nginx")
-	val scn = scenario("MyFirstTest").exec(http("Hello World").get("/"))
+class MyFirstSimulation extends Simulation {
 
-	setUp(scn.inject(atOnceUsers(20)).protocols(httpProtocol))	
 
+    val theHttpProtocolBuilder: HttpProtocolBuilder = http
+        .baseUrl("172.28.1.1")
+
+
+    val theScenarioBuilder: ScenarioBuilder = scenario("Scenario1")
+        .exec(
+            http("myRequest1")
+                .get("/")
+        )
+
+    setUp(
+        theScenarioBuilder.inject(atOnceUsers(1))
+    ).protocols(theHttpProtocolBuilder)
 }
