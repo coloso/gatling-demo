@@ -1,10 +1,10 @@
-#FROM openjdk:8-jdk-alpine
-#FROM openjdk:11-alpine
-#FROM alpine:3.11
 FROM openjdk:8-alpine
+
+LABEL maintainer="Janosch Kocsis <jk@coloso.de>"
+
 ENV GATLING_VERSION 3.2.1
 
-RUN apk --update --no-cache add openjdk8 wget
+RUN apk --update --no-cache wget
 
 RUN mkdir -p /opt/gatling
 
@@ -17,8 +17,3 @@ ENV PATH="$PATH:/opt/gatling/bin"
 
 ENTRYPOINT ["gatling.sh"]
 CMD ["-s computerdatabase.BasicSimulation"]
-#ENTRYPOINT ["/opt/gatling/bin/gatling.sh"]
-#CMD ["--help"]
-
-#CMD ["/opt/gatling/bin/gatling.sh"]
-#CMD ["/usr/bin/java", "-version"]
