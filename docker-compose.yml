@@ -19,8 +19,8 @@ services:
   gatling:
     build: ./docker/gatling
     volumes:
-      - ./gatling/results:/opt/gatling/results/
-      - ./gatling/user-files:/opt/gatling/user-files/simulations/
+      - ./gatling/results/:/opt/gatling/results
+      - ./gatling/simulations/:/opt/gatling/user-files/simulations
     networks:
       testing_net:
         ipv4_address: 172.28.1.3
