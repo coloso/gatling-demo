@@ -1,22 +1,11 @@
 version: '3.7'
 services:
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=symfony
-      - MYSQL_USER=symfony
-      - MYSQL_PASSWORD=password
   php:
     build: ./docker/php
-    links:
-      - mysql
-    volumes:
-      - ./symfony/:/var/www/symfony:cached
+    volumes: ['./symfony/:/var/www/symfony:cached']
   nginx:
     build: ./docker/nginx
-    links:
-      - php
-    volumes:
-      - ./logs/nginx:/var/log/nginx:cached
-      - ./symfony/:/var/www/symfony:cached
+    volumes: ['./symfony/:/var/www/symfony:cached']
+  gatling:
+    build: ./docker/gatling
+    volumes: ['./gatling/results/:/opt/gatling/results','./gatling/simulations/:/opt/gatling/user-files/simulations']

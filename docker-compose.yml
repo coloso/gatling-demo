@@ -5,29 +5,14 @@ services:
     ports: ['9000:9001']
     volumes: ['./symfony/:/var/www/symfony:cached']
     networks:
-      testing_net:
-        ipv4_address: 172.28.1.1
-
+      - default
   nginx:
     build: ./docker/nginx
     ports: ['80:80']
     volumes: ['./symfony/:/var/www/symfony:cached']
     networks:
-      testing_net:
-        ipv4_address: 172.28.1.2
-
-  gatling:
-    build: ./docker/gatling
-    volumes:
-      - ./gatling/results/:/opt/gatling/results
-      - ./gatling/simulations/:/opt/gatling/user-files/simulations
-    networks:
-      testing_net:
-        ipv4_address: 172.28.1.3
+      - default
 
 networks:
-  testing_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.28.0.0/16
+  default:
+    name: my-pre-existing-network
