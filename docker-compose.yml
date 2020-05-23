@@ -12,7 +12,6 @@ services:
     volumes: ['./symfony/:/var/www/symfony:cached']
     networks:
       - default
-
 networks:
   default:
     name: my-pre-existing-network

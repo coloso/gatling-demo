@@ -16,5 +16,6 @@ ENV GATLING_HOME /opt/gatling
 ENV PATH="$PATH:/opt/gatling/bin"
 
 ARG SCALA
-ENTRYPOINT ["gatling.sh" , "-s" , "${SCALA}"]
+#ENTRYPOINT ["gatling.sh" , "-s" , "${SCALA}"]
+ENTRYPOINT ["gatling.sh"]
 #CMD ["--help"]
