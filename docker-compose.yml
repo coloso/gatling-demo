@@ -14,4 +14,4 @@ services:
       - default
 networks:
   default:
-    name: my-pre-existing-network
+    name: loadtestnet
