@@ -9,6 +9,7 @@ class ExampleController
 {
     public function index(): Response
     {
+        sleep(5);
         return new Response();
     }
 }

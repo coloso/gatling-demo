@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.12
 
 LABEL maintainer="Janosch Kocsis <jk@coloso.de>"
 
@@ -40,7 +40,7 @@ RUN apk add --update \
     yarn
 
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/* && \
-    curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
+    curl --insecure https://getcomposer.org/download/1.10.7/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
 ADD php.ini /etc/php7/conf.d/
 ADD php.ini /etc/php7/cli/conf.d/
